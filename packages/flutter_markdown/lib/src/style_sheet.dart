@@ -60,6 +60,7 @@ class MarkdownStyleSheet {
     this.orderedListAlign = WrapAlignment.start,
     this.blockquoteAlign = WrapAlignment.start,
     this.codeblockAlign = WrapAlignment.start,
+    this.superscriptFontFeatureTag,
     @Deprecated('Use textScaler instead.') this.textScaleFactor,
     TextScaler? textScaler,
   })  : assert(
@@ -392,6 +393,7 @@ class MarkdownStyleSheet {
     WrapAlignment? orderedListAlign,
     WrapAlignment? blockquoteAlign,
     WrapAlignment? codeblockAlign,
+    String? superscriptFontFeatureTag,
     @Deprecated('Use textScaler instead.') double? textScaleFactor,
     TextScaler? textScaler,
   }) {
@@ -458,6 +460,8 @@ class MarkdownStyleSheet {
       orderedListAlign: orderedListAlign ?? this.orderedListAlign,
       blockquoteAlign: blockquoteAlign ?? this.blockquoteAlign,
       codeblockAlign: codeblockAlign ?? this.codeblockAlign,
+      superscriptFontFeatureTag:
+          superscriptFontFeatureTag ?? this.superscriptFontFeatureTag,
       textScaler: newTextScaler,
       textScaleFactor: nextTextScaleFactor,
     );
@@ -521,6 +525,7 @@ class MarkdownStyleSheet {
       blockquoteAlign: other.blockquoteAlign,
       codeblockAlign: other.codeblockAlign,
       textScaleFactor: other.textScaleFactor,
+      superscriptFontFeatureTag: other.superscriptFontFeatureTag,
       // Only one of textScaler and textScaleFactor can be passed. If
       // other.textScaleFactor is non-null, then the sheet was created with a
       // textScaleFactor and the textScaler was derived from that, so should be
@@ -692,6 +697,10 @@ class MarkdownStyleSheet {
   @Deprecated('Use textScaler instead.')
   final double? textScaleFactor;
 
+  /// Custom font feature tag for font which does not support `sups'
+  /// feature to create superscript in footnotes.
+  final String? superscriptFontFeatureTag;
+
   /// A [Map] from element name to the corresponding [TextStyle] object.
   Map<String, TextStyle?> get styles => _styles;
   Map<String, TextStyle?> _styles;
@@ -756,6 +765,7 @@ class MarkdownStyleSheet {
         other.orderedListAlign == orderedListAlign &&
         other.blockquoteAlign == blockquoteAlign &&
         other.codeblockAlign == codeblockAlign &&
+        other.superscriptFontFeatureTag == superscriptFontFeatureTag &&
         other.textScaler == textScaler;
   }
 
@@ -815,6 +825,7 @@ class MarkdownStyleSheet {
       codeblockAlign,
       textScaler,
       textScaleFactor,
+      superscriptFontFeatureTag,
     ]);
   }
 }

@@ -1,5 +1,11 @@
-## NEXT
+## 3.16.1
 
+* Fixes iframe navigation being handled in the main frame when `NavigationDelegate.onNavigationRequest` is present.
+
+## 3.16.0
+
+* Adds onReceivedHttpError WebViewClient callback to support
+  `PlatformNavigationDelegate.onHttpError`.
 * Updates minimum supported SDK version to Flutter 3.13/Dart 3.1.
 * Updates compileSdk to 34.
 
